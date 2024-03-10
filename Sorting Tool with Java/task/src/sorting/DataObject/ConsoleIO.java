@@ -1,4 +1,4 @@
-package sorting.Input;
+package sorting.DataObject;
 
 import java.util.*;
 
@@ -7,42 +7,10 @@ public class ConsoleIO<T extends Comparable<T>> {
     private final ArrayList<T> data;
     private final boolean sorted;
 
-    private ConsoleIO(DataType dataType, ArrayList<T> data, boolean sorted) {
+    ConsoleIO(DataType dataType, ArrayList<T> data, boolean sorted) {
         this.dataType = dataType;
         this.data = data;
         this.sorted = sorted;
-    }
-
-    public static ConsoleIO<?> getInstance(DataType type, boolean sorted) {
-        try(Scanner scanner = new Scanner(System.in)) {
-            return switch (type) {
-                case LONG -> ConsoleIO.getInputLONG(scanner, sorted);
-                case LINE -> ConsoleIO.getInputLINE(scanner, sorted);
-                case WORD -> ConsoleIO.getInputWORD(scanner, sorted);
-            };
-        }
-    }
-
-    private static ConsoleIO<Long> getInputLONG(Scanner scanner, boolean sorted) {
-        ArrayList<Long> input = new ArrayList<>();
-        while (scanner.hasNext()) {
-            input.add(scanner.nextLong());
-        }
-        return new ConsoleIO<>(DataType.LONG, input, sorted);
-    }
-    private static ConsoleIO<String> getInputLINE(Scanner scanner, boolean sorted) {
-        ArrayList<String> input = new ArrayList<>();
-        while (scanner.hasNext()) {
-            input.add(scanner.nextLine());
-        }
-        return new ConsoleIO<>(DataType.LINE, input, sorted);
-    }
-    private static ConsoleIO<String> getInputWORD(Scanner scanner, boolean sorted) {
-        ArrayList<String> input = new ArrayList<>();
-        while (scanner.hasNext()) {
-            input.add(scanner.next());
-        }
-        return new ConsoleIO<>(DataType.WORD, input, sorted);
     }
 
     private int getNumberOfElements() {

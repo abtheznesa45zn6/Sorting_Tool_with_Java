@@ -1,4 +1,4 @@
-package sorting.Input;
+package sorting.DataObject;
 
 public enum DataType {
     LONG,
